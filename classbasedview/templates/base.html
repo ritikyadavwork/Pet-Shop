@@ -24,6 +24,13 @@
           referrerpolicy="no-referrer"/>
     <!-- Your stuff: Third-party CSS libraries go here -->
     <!-- This file stores project-specific CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/js/tabler.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler-flags.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler-payments.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler-vendors.min.css">
 
 
     <link href="{% static 'css/project.css' %}" rel="stylesheet"/>
@@ -67,96 +74,39 @@
                 aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="{% url 'home' %}">classbasedview</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Website</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            {% get_menu "NAV_MENU_LEFT" as left_menu %}
-            {% for item in left_menu %}
-              {% if item.submenu %}
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle show" href="#" data-bs-toggle="dropdown"
-                     data-bs-auto-close="outside" role="button" aria-expanded="true">
-                  <span class="nav-link-title">
-                    <i class="{{ item.icon_class }}"></i>{{ item.name }}
-                  </span>
-                  </a>
-                  <div class="dropdown-menu" data-bs-popper="static">
-                    {% for menu in item.submenu %}
-                      <a class="dropdown-item {% if menu.selected %} active {% endif %}" href="{{ menu.url }}"
-                         rel="noopener">{{ menu.name }}</a>
-                    {% endfor %}
-                  </div>
-                </li>
-              {% else %}
-                <li class="nav-item {% if item.selected %} active {% endif %}">
-                  <a class="nav-link" href="{{ item.url }}">
-                    <i class="{{ item.icon_class }}"></i> {{ item.name }}
-                  </a>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-          <ul class="navbar-nav ml-auto" style="margin-left: auto;">
-            {% get_menu "NAV_MENU_RIGHT" as right_menu %}
-            {% for item in right_menu %}
-              {% if item.submenu %}
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle show" href="#" data-bs-toggle="dropdown"
-                     data-bs-auto-close="outside" role="button" aria-expanded="true">
-                  <span class="nav-link-title">
-                    <i class="{{ item.icon_class }}"></i>{{ item.name }}
-                  </span>
-                  </a>
-                  <div class="dropdown-menu" data-bs-popper="static">
-                    {% for menu in item.submenu %}
-                      <a class="dropdown-item {% if menu.selected %} active {% endif %}" href="{{ menu.url }}"
-                         rel="noopener">{{ menu.name }}</a>
-                    {% endfor %}
-                  </div>
-                </li>
-              {% else %}
-                <li class="nav-item {% if item.selected %} active {% endif %}">
-                  <a class="nav-link" href="{{ item.url }}">
-                    <i class="{{ item.icon_class }}"></i> {{ item.name }}
-                  </a>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-          <ul class="navbar-nav mr-auto">
-            {% if request.user.is_anonymous %}
-              {% if ACCOUNT_ALLOW_REGISTRATION %}
-                <li class="nav-item">
-                  {# URL provided by django-allauth/account/urls.py #}
-                  <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% translate "Sign Up" %}</a>
-                </li>
-                <li class="nav-item">
-                  {# URL provided by django-allauth/account/urls.py #}
-                  <a id="sign-up-link" class="nav-link" href="{% url 'account_login' %}">{% translate "Login" %}</a>
-                </li>
-              {% else %}
-                -
-              {% endif %}
+          <ul class="navbar-nav" style="margin-left: auto">
 
+            {% if request.user.is_authenticated %}
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="visually-hidden">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="{% url 'users:detail' request.user.username %}">{% translate "My Profile" %}</a>
+              </li>
+              <li class="nav-item">
+                {# URL provided by django-allauth/account/urls.py #}
+                <a class="nav-link" href="{% url 'account_logout' %}">{% translate "Sign Out" %}</a>
+              </li>
+            {% else %}
+              {% if ACCOUNT_ALLOW_REGISTRATION %}
+
+              {% endif %}
+              <li class="nav-item">
+                {# URL provided by django-allauth/account/urls.py #}
+                <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% translate "Sign Up" %}</a>
+              </li>
+              <li class="nav-item">
+                {# URL provided by django-allauth/account/urls.py #}
+                <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% translate "Sign In" %}</a>
+              </li>
             {% endif %}
           </ul>
-          {#          {% if request.user.is_authenticated %}#}
-          {#            <li class="nav-item">#}
-          {#              <a class="nav-link"#}
-          {#                 href="{% url 'users:detail' request.user.username %}">{% translate "My Profile" %}</a>#}
-          {#            </li>#}
-          {#            <li class="nav-item">#}
-          {#              URL provided by django-allauth/account/urls.py#}
-          {#              <a class="nav-link" href="{% url 'account_logout' %}">{% translate "Sign Out" %}</a>#}
-          {#            </li>#}
-          {#          {% else %}#}
-          {#            {% if ACCOUNT_ALLOW_REGISTRATION %}#}
-          {#              <li class="nav-item">#}
-          {#                URL provided by django-allauth/account/urls.py#}
-          {#                <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% translate "Sign Up" %}</a>#}
-          {#              </li>#}
-          {#            {% endif %}#}
-          {#          {% endif %}#}
         </div>
       </div>
     </nav>

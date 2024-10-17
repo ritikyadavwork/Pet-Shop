@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load allauth account %}
+
+{% block head_title %}
+  {% trans "Signup" %}
+{% endblock head_title %}
+{% block content %}
+  <div class="page page-center">
+    <div class="container container-tight py-4">
+      <div class="card card-md">
+        <div class="card-body shadow">
+          <h2 class="h2 text-center mb-4">{{ block.title|default:_("Create to your account") }}</h2>
+          {% setvar link %}
+            <a href="{{ login_url }}">
+          {% endsetvar %}
+          {% setvar end_link %}
+            </a>
+          {% endsetvar %}
+          {% if not SOCIALACCOUNT_ONLY %}
+            {% url 'account_signup' as action_url %}
+            {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+              {% slot body %}
+                {% csrf_token %}
+                {% element fields form=form unlabeled=True %}
+                {% endelement %}
+                {{ redirect_field }}
+              {% endslot %}
+              {% slot actions %}
+                {% element button tags="prominent,signup" type="submit" %}
+                  {% trans "Sign Up" %}
+                {% endelement %}
+              {% endslot %}
+            {% endelement %}
+          {% endif %}
+          {% if SOCIALACCOUNT_ENABLED %}
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+          {% endif %}
+
+          <div class="text-center text-muted mt-3">
+            {% trans "Already have an account?" %}
+            <a href="{% url 'account_login' %}" tabindex="-1">{% trans "Sign in" %}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

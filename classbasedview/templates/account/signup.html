@@ -6,9 +6,9 @@
   {% trans "Signup" %}
 {% endblock head_title %}
 {% block content %}
-  <div class="page page-center">
-    <div class="container container-tight py-4">
-      <div class="card card-md">
+  <div class="row py-3">
+    <div class="col-md-6 m-auto mt-5 ">
+      <div class="card card-md ">
         <div class="card-body shadow">
           <h2 class="h2 text-center mb-4">{{ block.title|default:_("Create to your account") }}</h2>
           {% setvar link %}
@@ -44,5 +44,8 @@
         </div>
       </div>
     </div>
+
+  </div>
+  <div class="card-footer">
   </div>
 {% endblock %}

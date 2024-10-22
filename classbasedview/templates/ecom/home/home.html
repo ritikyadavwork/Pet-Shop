@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Home
+{% endblock title %}
+
+{% block main %}
+  <style>
+    .category-icon {
+      font-size: 3rem; /* Adjust size */
+      color: #333; /* Adjust icon color */
+    }
+
+    .categories-item {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Additional styling for category section */
+    #categories .col {
+      margin-top: 20px;
+    }
+  </style>
+
+  <!-- Banner Section -->
+  <section style="background: #F9F3EC">
+
+    <div class="container">
+      <div class="col-md-12">
+        <div class="swiper-slide py-5 swiper-slide-active" role="group" aria-label="1 / 3">
+          <div class="row align-items-center">
+            <div class="col-md-5">
+              <img src="{% static 'images/banner-img4.png' %}" class="img-fluid" alt="ritik">
+            </div>
+            <div class="col-md-7 p-5 mb-5">
+              <div class="h6 text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
+              <h2 class="display-1 fw-normal">Best destination for <span class="text-primary">your pets</span></h2>
+              <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                Shop Now
+                <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+                  <use xlink:href="#arrow-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swiper Pagination -->
+        <div
+          class="swiper-pagination mb-5 swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
+            <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button"
+                  aria-label="Go to slide 1" aria-current="true"></span>
+          <span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span>
+          <span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span>
+        </div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Categories Section -->
+  <section id="categories">
+    <div class="container my-3 py-5">
+      <div class="row my-5">
+        <div class="col text-center">
+          <a href="#" class="categories-item">
+            <span class="iconify category-icon" data-icon="ph:bowl-food" data-inline="false"></span>
+            <h5>Foodies</h5>
+          </a>
+        </div>
+        <div class="col text-center">
+          <a href="#" class="categories-item">
+            <span class="iconify category-icon" data-icon="ph:bird" data-inline="false"></span>
+            <h5>Bird Shop</h5>
+          </a>
+        </div>
+        <div class="col text-center">
+          <a href="#" class="categories-item">
+            <span class="iconify category-icon" data-icon="ph:dog" data-inline="false"></span>
+            <h5>Dog Shop</h5>
+          </a>
+        </div>
+        <div class="col text-center">
+          <a href="#" class="categories-item">
+            <span class="iconify category-icon" data-icon="ph:fish" data-inline="false"></span>
+            <h5>Fish Shop</h5>
+          </a>
+        </div>
+        <div class="col text-center">
+          <a href="#" class="categories-item">
+            <span class="iconify category-icon" data-icon="ph:cat" data-inline="false"></span>
+            <h5>Cat Shop</h5>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% include 'footer.html' %}
+{% endblock %}

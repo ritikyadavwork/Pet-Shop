@@ -267,7 +267,7 @@ LOGGING = {
 # ------------------------------------------------------------------------------
 ACCOUNT_ALLOW_REGISTRATION = True
 # https://docs.allauth.org/en/latest/account/configuration.html
-ACCOUNT_AUTHENTICATION_METHOD = "username"
+ACCOUNT_AUTHENTICATION_METHOD = "email"
 # https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_EMAIL_REQUIRED = True
 # https://docs.allauth.org/en/latest/account/configuration.html

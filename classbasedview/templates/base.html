@@ -32,7 +32,7 @@
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler-vendors.min.css">
 
-
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
     <link href="{% static 'css/project.css' %}" rel="stylesheet"/>
 
 
@@ -74,7 +74,7 @@
                 aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="{% url 'home' %}">Website</a>
+        <a class="navbar-brand" href="{% url 'ecom:home' %}">Website</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav" style="margin-left: auto">
 
@@ -83,7 +83,7 @@
                 <a class="nav-link" href="#">Home <span class="visually-hidden">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">About</a>
+                <a class="nav-link" href="#">About</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link"
@@ -111,7 +111,7 @@
       </div>
     </nav>
   </div>
-  <div class="container">
+  <div class="">
     {% if messages %}
       {% for message in messages %}
         <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
@@ -125,7 +125,7 @@
     {% endif %}
     {% block main %}
       {% block content %}
-        <p>Use this document as a way to quick start any new project.</p>
+
       {% endblock content %}
     {% endblock main %}
 

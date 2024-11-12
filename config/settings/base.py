@@ -305,5 +305,9 @@ SPECTACULAR_SETTINGS = {
     "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
     "SCHEMA_PATH_PREFIX": "/api/",
 }
+
+# radis
+REDIS_URL = env('REDIS_URL', default='redis://127.0.0.1:6379/1')
+
 # Your stuff...
 # ------------------------------------------------------------------------------

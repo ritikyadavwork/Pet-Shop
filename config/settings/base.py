@@ -56,11 +56,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 ROOT_URLCONF = "config.urls"
 # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = "config.wsgi.application"
+# asgi application
+ASGI_APPLICATION = 'config.asgi.application'
 
 # APPS
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [
     "django.contrib.auth",
+    "daphne",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.sites",
@@ -82,6 +85,7 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     "drf_spectacular",
     'menu_generator',
+    "channels",
 ]
 
 LOCAL_APPS = [

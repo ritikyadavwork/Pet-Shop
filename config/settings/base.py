@@ -86,6 +86,7 @@ THIRD_PARTY_APPS = [
     "drf_spectacular",
     'menu_generator',
     "channels",
+    'ckeditor'
 ]
 
 LOCAL_APPS = [

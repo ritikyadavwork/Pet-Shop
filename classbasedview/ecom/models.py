@@ -16,3 +16,11 @@ class Product(TimeStampedModel):
 
     def __str__(self):
         return self.title
+
+
+class Category(TimeStampedModel):
+    name = models.CharField(max_length=255, null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name

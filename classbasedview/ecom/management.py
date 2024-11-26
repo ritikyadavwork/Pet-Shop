@@ -21,4 +21,5 @@ class ProductAddView(CreateView):
 
 class ProductListView(ListView):
     model = Product
-    template_name =''
+    template_name = 'product/product_list.html'
+    paginate_by = 12

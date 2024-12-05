@@ -14,6 +14,7 @@ class Product(TimeStampedModel):
     image = models.ImageField(upload_to='products/', null=True, blank=True)
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, blank=True)
     description = RichTextField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
@@ -26,3 +27,10 @@ class Category(TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+    @property
+    def image_url(self):
+        if self.logo:
+            return self.logo.url
+        else:
+            return None

@@ -8,7 +8,7 @@ from django.views.generic.edit import FormView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from classbasedview.ecom.forms import ProductForm
-from classbasedview.ecom.models import Product
+from classbasedview.ecom.models import Product, Category
 
 
 class ProductAddView(CreateView):
@@ -25,3 +25,8 @@ class ProductListView(ListView):
     model = Product
     template_name = 'product/product_list.html'
     paginate_by = 12
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['category'] = Category.objects.filter(is_active=True)
+        return context

@@ -17,7 +17,7 @@
             </h3>
           </div>
           <div class="card-body">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
               {% csrf_token %}
               <div>
                 {% crispy form %}

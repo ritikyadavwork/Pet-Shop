@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from datetime import datetime
 from django.core.exceptions import ValidationError
 
-from classbasedview.ecom.models import Product
+from classbasedview.ecom.models import Product, Category
 
 
 class ProductForm(forms.ModelForm):
@@ -19,11 +19,14 @@ class ProductForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['category'].widget.attrs.update({'data-searchable': 'true'})
+        self.fields['category'].empty_label = 'Select Category'
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Div(
                 Div('title', css_class='col-md-6'),
                 Div('product_name', css_class='col-md-6'),
+                Div('category', css_class='col-md-6'),
                 Div('price', css_class='col-md-6'),
                 Div('stock', css_class='col-md-6'),
                 Div('image', css_class='col-md-6'),
